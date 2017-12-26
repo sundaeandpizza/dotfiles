@@ -1,0 +1,23 @@
+body {
+	margin-left: -50;
+	margin-right: -50;
+	background-color: #222222;
+	color: #e8e9ca;
+}
+
+h1 {
+	color: #e8e9ca;
+	margin-left: 20 px;
+	text-align: center;
+	font-family: Sans;
+}
+
+a {
+	text-decoration: none;
+	color: #e8e9ca;
+}
+
+#links {
+	text-align: center;
+	font-family: Sans;
+}

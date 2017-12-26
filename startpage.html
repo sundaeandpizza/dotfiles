@@ -1,0 +1,133 @@
+<!doctype html>
+
+<title>~</title>
+
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<script type="text/javascript">WebFontConfig={google:{families:['Lato:300:latin']}};</script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" type="text/javascript" async></script>
+
+<style type="text/css">
+  body,
+  input {
+    font-family: 'Lato', sans-serif;
+  }
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #111;
+    color: #fff;
+    text-align: center;
+  }
+  input,
+  input:focus {
+    border: 0;
+    outline: 0;
+    -webkit-appearance: none;
+  }
+  .wrapper {
+    position: relative;
+    top: 30%;
+    padding: 1rem;
+  }
+  .time {
+    font-size: 5rem;
+    letter-spacing: 6px;
+  }
+  .search {
+    margin-top: 2rem;
+  }
+  .search__text,
+  .help {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 300px;
+  }
+  .search__text {
+    padding: 0.75rem;
+    background-color: #222;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 1.1rem;
+  }
+  .help {
+    height: 0;
+    margin: 1rem auto 0;
+    border-right: dashed 1px #ddd;
+    transition: height 0.2s linear;
+    text-align: left;
+    line-height: 1rem;
+    column-count: 2;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    overflow: hidden;
+  }
+</style>
+<h1>Startpage</h1>
+<div class="wrapper">
+  <time class="time" id="js-time"></time>
+  <form class="search" id="js-search" autocomplete="off">
+    <input class="search__text" id="js-search-text" type="text" autofocus>
+  </form>
+  <pre class="help" id="js-help"></pre>
+</div>
+
+<script type="text/javascript">
+  ;(function() {
+    
+    var Cmdr = {
+      searchForm: document.getElementById('js-search'),
+      searchText: document.getElementById('js-search-text'),
+      searchHelp: document.getElementById('js-help'),
+      init: function(opts) {
+        Cmdr.default = opts.default;
+        Cmdr.commands = opts.commands;
+        Cmdr.searchForm.addEventListener('submit', Cmdr.search, false);
+      },
+      search: function(e) {
+        var q = Cmdr.searchText.value;
+        if (q === '?') {
+          Cmdr.commands.forEach(function(command) {
+            Cmdr.searchHelp.innerHTML += command.key + ': ' + command.name + '\n';
+          });
+          Cmdr.searchHelp.style.height = Math.ceil(Cmdr.commands.length / 2) + 'rem';
+          Cmdr.searchText.value = '';
+        } else {
+          Cmdr.location = Cmdr.default + encodeURIComponent(q);
+          q = q.split(':');
+          Cmdr.commands.forEach(function(command) {
+            if (q[0] === command.key) {
+              Cmdr.location = command.url;
+              if (q[1] && command.search) {
+                q.shift();
+                var searchText = encodeURIComponent(q.join(':').trim());
+                Cmdr.location = command.url + command.search + searchText;
+              }
+            }
+          });
+          window.location.href = Cmdr.location;
+        }
+        e.preventDefault();
+      }
+    };
+   // Clock.init();
+    Cmdr.init({
+      default: 'https://www.google.com/search?q=',
+      commands: [
+        { key: 'r', name: 'Reddit', url: 'https://www.reddit.com', search: '/r/' },
+        { key: 's', name: 'SoundCloud', url: 'https://soundcloud.com', search: '/search?q=' },
+        { key: 't', name: 'Twitter', url: 'https://twitter.com', search: '/' },
+        { key: 'y', name: 'YouTube', url: 'https://www.youtube.com', search: '/results?search_query=' },
+        { key: '4', name: '4chan', url: 'https://boards.4chan.org', search: '/' },
+	{ key: 'm', name: '4chan', url: 'https://support.mozilla.org/t5/Basic-Browsing/Keyboard-shortcuts-Perform-common-Firefox-tasks-quickly/ta-p/3866' },
+      ]
+    });
+  }());
+</script>
