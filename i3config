@@ -184,6 +184,7 @@ new_window pixel 1
 hide_edge_borders both
 
 exec sh ~/.fehbg &
+exec compton --config ./.compton/compton.conf
 
 #i3 gaps
 gaps inner 10
