@@ -36,6 +36,8 @@ bindsym $mod+Return exec urxvt
 #start firefox
 bindsym $mod+Shift+f exec firefox
 
+#start waterfox
+bindsym $mod+Shift+w exec waterfox
 
 #function keys
 bindsym XF86AudioLowerVolume	exec amixer sset Master 5%-
@@ -184,6 +186,6 @@ hide_edge_borders both
 exec sh ~/.fehbg &
 
 #i3 gaps
-#gaps inner 10
-#gaps outer 10
+gaps inner 10
+gaps outer 5
 
