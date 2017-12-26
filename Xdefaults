@@ -25,5 +25,3 @@ URxvt*font :xft:Sans:pixelsize=11
 URxvt*boldFont :xft:Sans:pixelsize=11
 URxvt*letterSpace: -1
 URxvt.scrollBar:false
-URxvt.transparent: true
-URxvt.shading: 10
