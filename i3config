@@ -40,8 +40,8 @@ bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+w exec waterfox
 
 #function keys
-bindsym XF86AudioLowerVolume	exec amixer sset Master 5%-
-bindsym XF86AudioRaiseVolume	exec amixer sset Master 5%+
+bindsym XF86AudioLowerVolume	exec amixer -D pulse sset Master 5%-
+bindsym XF86AudioRaiseVolume	exec amixer -D pulse sset Master 5%+
 
 bindsym XF86AudioNext		exec mpc next
 bindsym XF86AudioPrev		exec mpc prev
@@ -184,9 +184,9 @@ new_window pixel 1
 hide_edge_borders both
 
 exec sh ~/.fehbg &
-exec compton --config ./.compton/compton.conf
+#exec compton --config ./.compton/compton.conf
 
 #i3 gaps
-gaps inner 10
-gaps outer 5
+#gaps inner 10
+#gaps outer 5
 
